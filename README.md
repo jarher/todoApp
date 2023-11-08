@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Screenshot
 
-![./screenshot.png.jpg]
+![screenshot](https://github.com/jarher/todoApp/assets/7361853/c6aee4b3-f26d-4c3a-bf42-959205756051)
 
 
 ### Links
