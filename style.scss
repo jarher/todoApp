@@ -1,0 +1,407 @@
+@font-face {
+  font-family: "Josefin Sans Regular";
+  src: url("./fonts/static/JosefinSans-Regular.ttf");
+}
+@font-face {
+  font-family: "Josefin Sans Bold";
+  src: url("./fonts/static/JosefinSans-Bold.ttf");
+}
+@import "variables";
+
+%flex {
+  display: flex;
+}
+%flex-center {
+  @extend %flex;
+  align-items: center;
+}
+%transition {
+  transition: all 0.2s ease-in-out;
+}
+%indicator-active {
+  border: none;
+  background: url("./images/icon-check.svg") no-repeat center / 15px,
+    $Check-Background !important;
+}
+@mixin themeFontColor($theme) {
+  color: $theme;
+}
+@mixin themeBackgroundColor($theme: $drk-Very-Dark-Blue) {
+  background-color: $theme;
+}
+@mixin indicatorBorderColor($theme: $drk-Very-Dark-Grayish-Blue) {
+  border-color: $theme;
+}
+@mixin themeBackgroundImage($theme: $drk-Very-Dark-Desaturated-Blue) {
+  background-image: linear-gradient($theme, $theme), $Check-Background;
+}
+@mixin themeBorderBottomColor($theme: $drk-Very-Dark-Grayish-Blue) {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: $theme;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: $Font-size;
+  body {
+    background: url("./images/bg-mobile-dark.jpg") no-repeat fixed top / contain;
+    @extend %transition;
+    .content {
+      @extend %flex;
+      width: 90%;
+      margin: 10% auto;
+      flex-direction: column;
+
+      header {
+        @extend %flex-center;
+        justify-content: space-between;
+
+        h1 {
+          font-family: $Font-josefin-bold;
+          font-size: 2rem;
+          margin: 0;
+          letter-spacing: 0.5rem;
+        }
+        .toggle-theme {
+          height: 26px;
+          width: 26px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .create-todo {
+        @extend %flex-center;
+        @extend %transition;
+        border-radius: 5px;
+        padding: 30px;
+        margin-top: 10%;
+
+        .todoInput {
+          margin-left: 10px;
+          input {
+            background-color: transparent;
+            appearance: none;
+            border: none;
+            font-family: $Font-josefin-bold;
+            font-size: 0.8rem;
+            caret-color: $Bright-Blue;
+            caret-shape: block;
+            &:focus {
+              border: none;
+              outline: none;
+            }
+          }
+        }
+      }
+      .todos-container {
+        margin-top: 5%;
+        .todos-item {
+          @extend %flex-center;
+          @extend %transition;
+          height: 60px;
+          width: 100%;
+          padding: 0 30px;
+          margin: auto;
+          box-sizing: border-box;
+          cursor: move;
+          .todos-item-text {
+            font-family: $Font-josefin-bold;
+            font-size: 0.7rem;
+            margin: 0 10px;
+            line-height: 1rem;
+            flex: 3;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+          }
+          .todos-delete-btn {
+            background: url("./images/icon-cross.svg") no-repeat center / cover;
+            height: 15px;
+            width: 15px;
+            border: none;
+            float: right;
+            cursor: pointer;
+          }
+          &:first-child {
+            border-radius: 5px 5px 0 0;
+          }
+          &:last-child {
+            border-radius: 0 0 5px 5px;
+          }
+        }
+      }
+      .todos-filters {
+        @extend %flex-center;
+        @extend %transition;
+        flex-wrap: wrap;
+        margin-top: 5%;
+        .items-number {
+          order: 1;
+          flex: 1;
+          border-bottom-left-radius: 5px;
+          padding: 20px 30px;
+          text-align: left;
+          font-family: $Font-josefin-regular;
+          font-weight: 600;
+          font-size: 0.75rem;
+        }
+        .todos-filters-wrapper {
+          @extend %flex;
+          justify-content: center;
+          order: 3;
+          flex: 100%;
+          margin-top: 5%;
+          border-radius: 5px;
+          padding: 5%;
+          font-family: $Font-josefin-bold;
+          gap: 20px;
+          .todo-filter {
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        .todo-clear-filter {
+          border-bottom-right-radius: 5px;
+          padding: 20px 30px;
+          text-align: right;
+          font-family: $Font-josefin-regular;
+          font-weight: 600;
+          font-size: 0.75rem;
+          order: 2;
+          flex: 1;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      footer {
+        margin-top: 10%;
+        text-align: center;
+        span {
+          font-family: $Font-josefin-bold;
+          font-size: 0.8rem;
+        }
+      }
+      .indicator {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 1px;
+        display: inline-block;
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          border: solid 1px transparent;
+          background-origin: border-box;
+          background-clip: content-box, border-box;
+          cursor: pointer;
+        }
+      }
+      .indicator-active {
+        @extend %indicator-active;
+      }
+      .indicator-active:hover {
+        @extend %indicator-active;
+      }
+      .todos-item-text-completed {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+@media (min-width: 1024px) {
+  html {
+    body {
+      background: url("./images/bg-desktop-dark.jpg") no-repeat fixed top left /
+        contain;
+      .content {
+        width: 45%;
+        margin: 5% auto;
+        .create-todo {
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
+        .todos-container {
+          margin-top: 5%;
+          .todos-item {
+            padding: 3%;
+          }
+        }
+        .todos-filters {
+          margin-top: 0;
+          .items-number {
+            order: 1;
+            flex: 1;
+            padding: 3%;
+          }
+          .todos-filters-wrapper {
+            order: 2;
+            flex: 1;
+            border-radius: none;
+            font-size: 0.75rem;
+            margin: 0;
+            padding: 3%;
+          }
+          .todo-clear-filter {
+            order: 3;
+            flex: 1;
+            padding: 3%;
+          }
+        }
+      }
+    }
+  }
+}
+.dark-theme {
+  @include themeBackgroundColor;
+  .content {
+    header {
+      h1 {
+        @include themeFontColor($theme: $drk-Light-Grayish-Blue);
+      }
+      .toggle-theme {
+        background: url("./images/icon-sun.svg") no-repeat center / cover;
+      }
+    }
+    .create-todo {
+      @include themeBackgroundColor($theme: $drk-Very-Dark-Desaturated-Blue);
+      .todoInput {
+        input {
+          @include themeFontColor($theme: $drk-Dark-Grayish-Blue);
+          &:focus {
+            @include themeFontColor($theme: $drk-Light-Grayish-Blue);
+          }
+        }
+      }
+    }
+    .todos-container {
+      .todos-item {
+        @include themeBackgroundColor($theme: $drk-Very-Dark-Desaturated-Blue);
+        &:not(:last-child) {
+          @include themeBorderBottomColor;
+        }
+        .todos-item-text {
+          @include themeFontColor($theme: $drk-Light-Grayish-Blue);
+        }
+      }
+    }
+    .todos-filters {
+      .items-number {
+        @include themeFontColor($theme: $drk-Very-Dark-Grayish-Blue);
+        @include themeBackgroundColor($theme: $drk-Very-Dark-Desaturated-Blue);
+      }
+      .todos-filters-wrapper {
+        @include themeBackgroundColor($theme: $drk-Very-Dark-Desaturated-Blue);
+        @include themeFontColor($theme: $drk-Very-Dark-Grayish-Blue);
+
+        .todo-filter {
+          &:hover {
+            @include themeFontColor($theme: $drk-Light-Grayish-Blue-hover);
+          }
+        }
+      }
+      .todo-clear-filter {
+        @include themeFontColor($theme: $drk-Very-Dark-Grayish-Blue);
+        @include themeBackgroundColor($theme: $drk-Very-Dark-Desaturated-Blue);
+        &:hover {
+          @include themeFontColor($theme: $drk-Light-Grayish-Blue-hover);
+        }
+      }
+    }
+    footer {
+      span {
+        @include themeFontColor($theme: $drk-Very-Dark-Grayish-Blue);
+      }
+    }
+    .indicator {
+      @include indicatorBorderColor;
+      &:hover {
+        @include themeBackgroundImage;
+      }
+    }
+    .todos-item-text-completed {
+      color: $drk-Very-Dark-Grayish-Blue !important;
+    }
+    .filter-active {
+      @include themeFontColor($theme: $Bright-Blue);
+    }
+  }
+}
+.light-theme {
+  @include themeBackgroundColor($theme: $lgt-Very-Light-Grayish-Blue);
+  .content {
+    header {
+      h1 {
+        @include themeFontColor($theme: $lgt-Very-Light-Gray);
+      }
+      .toggle-theme {
+        background: url("./images/icon-moon.svg") no-repeat center / cover;
+      }
+    }
+    .create-todo {
+      @include themeBackgroundColor($theme: $lgt-Very-Light-Gray);
+      .todoInput {
+        input {
+          @include themeFontColor($theme: $lgt-Very-Dark-Grayish-Blue);
+          &:focus {
+            @include themeFontColor($theme: $lgt-Very-Dark-Grayish-Blue);
+          }
+        }
+      }
+    }
+    .todos-container {
+      .todos-item {
+        @include themeBackgroundColor($theme: $lgt-Very-Light-Gray);
+        @include themeBorderBottomColor($theme:$lgt-Light-Grayish-Blue);
+        .todos-item-text {
+          @include themeFontColor($theme: $lgt-Very-Dark-Grayish-Blue);
+        }
+      }
+    }
+    .todos-filters {
+      .items-number {
+        @include themeFontColor($theme: $lgt-Very-Dark-Grayish-Blue);
+        @include themeBackgroundColor($theme: $lgt-Very-Light-Gray);
+      }
+      .todos-filters-wrapper {
+        @include themeBackgroundColor($theme: $lgt-Very-Light-Gray);
+        @include themeFontColor($theme: $lgt-Very-Dark-Grayish-Blue);
+
+        .todo-filter {
+          &:hover {
+            @include themeFontColor($theme: $drk-Light-Grayish-Blue-hover);
+          }
+        }
+      }
+      .todo-clear-filter {
+        @include themeFontColor($theme: $lgt-Very-Dark-Grayish-Blue);
+        @include themeBackgroundColor($theme: $lgt-Very-Light-Gray);
+        &:hover {
+          @include themeFontColor($theme: $drk-Light-Grayish-Blue-hover);
+        }
+      }
+    }
+    footer {
+      span {
+        @include themeFontColor($theme: $lgt-Very-Dark-Grayish-Blue);
+      }
+    }
+    .indicator {
+      @include indicatorBorderColor($theme: $lgt-Light-Grayish-Blue);
+      &:hover {
+        @include themeBackgroundImage;
+      }
+    }
+    .todos-item-text-completed {
+      color: $lgt-Light-Grayish-Blue !important;
+    }
+    .filter-active {
+      @include themeFontColor($theme: $Bright-Blue);
+    }
+  }
+}
+.hide {
+  opacity: 0.7;
+}

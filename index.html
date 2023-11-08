@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Todo app</title>
+
+</head>
+
+<body class="dark-theme">
+  <div class="content">
+    <header>
+      <h1>TODO</h1>
+      <span class="toggle-theme" aria-label="change-theme"></span>
+    </header>
+
+    <div class="create-todo">
+      <span class="indicator"></span>
+      <form role="form" name="todoInput" class="todoInput">
+        <input type="text" placeholder="Create a new todo...">
+      </form>
+    </div>
+
+    <div class="todos-container" role="main"></div>
+
+    <div class="todos-filters" role="navigation">
+      <span class="items-number" aria-label="number-of-items"><span class="itemsNumber"></span> items left</span>
+      <div class="todos-filters-wrapper">
+        <span class="todo-filter filter-active" id="allItems">All</span>
+        <span class="todo-filter" id="activeItems">Active</span>
+        <span class="todo-filter" id="completedItems">Completed</span>
+      </div>
+      <span class="todo-clear-filter" id="clearCompletedItems">Clear Completed</span>
+    </div>
+
+    <footer>
+      <span>Drag and drop to reorder list</span>
+    </footer>
+  </div>
+  <script src="./js/main.js" type="module"></script>
+</body>
+
+</html>
